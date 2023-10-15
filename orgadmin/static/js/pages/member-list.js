@@ -87,11 +87,11 @@ xhttp.onload = function () {
   Array.from(json_records).forEach(raw => {
     customerList.add({
       id: '<a href="javascript:void(0);" class="fw-medium link-primary">#VZ'+raw.id+"</a>",
-      customer_name: raw.customer_name,
+      name: raw.name,
       email: raw.email,
-      date: raw.date,
+      join_date: raw.join_date,
       phone: raw.phone,
-      status: isStatus(raw.status)
+      member_status: isStatus(raw.member_status)
     });
     customerList.sort('id', { order: "desc" });
     refreshCallbacks();
@@ -99,6 +99,7 @@ xhttp.onload = function () {
   customerList.remove("id", '<a href="javascript:void(0);" class="fw-medium link-primary">#VZ2101</a>');
 }
 xhttp.open("GET", "/static/json/table-customer-list.json");
+xhttp.open("GET", "/taekwondogym/api/member");
 xhttp.send();
 
 isCount = new DOMParser().parseFromString(
@@ -109,11 +110,15 @@ isCount = new DOMParser().parseFromString(
 var isValue = isCount.body.firstElementChild.innerHTML;
 
 var idField = document.getElementById("id-field"),
-    customerNameField = document.getElementById("customername-field"),
+    nameField = document.getElementById("name-field"),
+    addressField = document.getElementById("address-field"),
+    parentnameField = document.getElementById("parentname-field"),
     emailField = document.getElementById("email-field"),
-    dateField = document.getElementById("date-field"),
     phoneField = document.getElementById("phone-field"),
-    statusField = document.getElementById("status-field"),
+    lineidField = document.getElementById("lineid-field"),
+    joindateField = document.getElementById("joindate-field"),
+    memberstatusField = document.getElementById("memberstatus-field"),
+
     addBtn = document.getElementById("add-btn"),
     editBtn = document.getElementById("edit-btn"),
     removeBtns = document.getElementsByClassName("remove-item-btn"),
@@ -212,6 +217,7 @@ Array.prototype.slice.call(forms).forEach(function (form) {
                     status: isStatus(statusField.value),
                 });
                 customerList.sort('id', { order: "desc" });
+                console.log("ADD METHOD");
                 document.getElementById("close-modal").click();
                 refreshCallbacks();
                 clearFields();
@@ -220,7 +226,7 @@ Array.prototype.slice.call(forms).forEach(function (form) {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Customer inserted successfully!',
+                    title: 'Member inserted successfully!',
                     showConfirmButton: false,
                     timer: 2000,
                     showCloseButton: true
@@ -253,7 +259,7 @@ Array.prototype.slice.call(forms).forEach(function (form) {
                 Swal.fire({
                     position: 'center',
                     icon: 'success',
-                    title: 'Customer updated Successfully!',
+                    title: 'Member updated Successfully!',
                     showConfirmButton: false,
                     timer: 2000,
                     showCloseButton: true
@@ -310,6 +316,7 @@ function refreshCallbacks() {
                 if (isdeleteid == itemId) {
                     document.getElementById("delete-record").addEventListener("click", function () {
                         customerList.remove("id", isElem.outerHTML);
+                        console.log(JSON.stringify(customerList));
                         document.getElementById("deleteRecordModal").click();
                     });
                 }

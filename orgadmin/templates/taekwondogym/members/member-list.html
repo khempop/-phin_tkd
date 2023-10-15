@@ -132,14 +132,26 @@
                                 <form class="tablelist-form" autocomplete="off">
                                     <div class="modal-body">
                                         <div class="mb-3" id="modal-id" style="display: none;">
-                                            <label for="id-field" class="form-label">ID</label>
-                                            <input type="text" id="id-field" class="form-control" placeholder="ID" readonly />
+                                            <label for="id-field" class="form-label">GYM</label>
+                                            <input type="text" id="gym-field" class="form-control" placeholder="gym" value="{{gym}}" readonly />
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="customername-field" class="form-label">Customer Name</label>
-                                            <input type="text" id="customername-field" class="form-control" placeholder="Enter Name" required />
-                                            <div class="invalid-feedback">Please enter a customer name.</div>
+                                            <label for="name-field" class="form-label">Name</label>
+                                            <input type="text" id="name-field" class="form-control" placeholder="Enter Name" required />
+                                            <div class="invalid-feedback">Please enter a name.</div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="address-field" class="form-label">Address</label>
+                                            <input type="text" id="address-field" class="form-control" placeholder="Enter Address" required />
+                                            <div class="invalid-feedback">Please enter a address.</div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="parentname-field" class="form-label">Parent name</label>
+                                            <input type="text" id="parentname-field" class="form-control" placeholder="Enter Parent Name" required />
+                                            <div class="invalid-feedback">Please enter a parent name.</div>
                                         </div>
 
                                         <div class="mb-3">
@@ -155,24 +167,21 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <label for="date-field" class="form-label">Joining Date</label>
-                                            <input type="text" id="date-field" class="form-control" placeholder="Select Date" required />
-                                            <div class="invalid-feedback">Please select a date.</div>
+                                            <label for="lineid-field" class="form-label">Line ID</label>
+                                            <input type="text" id="lineid-field" class="form-control" placeholder="Enter Line ID" />
+                                            <div class="invalid-feedback">Please enter a line ID.</div>
                                         </div>
 
-                                        <div>
-                                            <label for="status-field" class="form-label">Status</label>
-                                            <select class="form-control" data-trigger name="status-field" id="status-field" required>
-                                                <option value="">Status</option>
-                                                <option value="Active">Active</option>
-                                                <option value="Block">Block</option>
-                                            </select>
+                                        <div class="mb-3">
+                                            <label for="joindate-field" class="form-label">Joining Date</label>
+                                            <input type="text" id="joindate-field" class="form-control" placeholder="Select Date" value="{% now "SHORT_DATETIME_FORMAT" %}" />
+                                            <div class="invalid-feedback">Please select a date.</div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <div class="hstack gap-2 justify-content-end">
                                             <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-success" id="add-btn">Add Customer</button>
+                                            <button type="submit" class="btn btn-success" id="add-btn">Add Member</button>
                                             <!-- <button type="button" class="btn btn-success" id="edit-btn">Update</button> -->
                                         </div>
                                     </div>

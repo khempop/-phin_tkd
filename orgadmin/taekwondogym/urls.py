@@ -3,6 +3,7 @@ from taekwondogym.views import(
     member_add_view,
     member_update_view,
     member_list_view,
+    MemberAPI,
 
     staff_add_view,
     staff_update_view,
@@ -33,10 +34,14 @@ urlpatterns = [
     path("add-member", view=member_add_view, name="member.add"),
     path("update-member", view=member_update_view, name="member.update"),
     path("list-member", view=member_list_view, name="member.list"),
+    path("api/add-member", MemberAPI.as_view()),
+    path("api/update-member/<int:id>/", MemberAPI.as_view()),
+    path("api/member/<int:id>/", MemberAPI.as_view()),
+    path("api/member", MemberAPI.as_view()),
 
     path("add-staff", view=staff_add_view, name="staff.add"),
     path("update-staff", view=staff_update_view, name="staff.update"),
-     path("list-staff", view=staff_update_view, name="staff.list"),
+    path("list-staff", view=staff_update_view, name="staff.list"),
 
     path("add-class", view=class_add_view, name="class.add"),
     path("update-class", view=class_update_view, name="class.update"),

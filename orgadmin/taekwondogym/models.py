@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 from multiselectfield import MultiSelectField
 
 # Create your models here.
@@ -25,9 +26,8 @@ PAYMENT_TYPE = (
     ('CASH','CASH')
 )
 
-
-
 class Member(models.Model):
+    gym = models.CharField(max_length=150)
     profile_pic = models.ImageField(upload_to="images/contact",blank=True,null=True)
     name = models.CharField(max_length=150)
     address = models.CharField(max_length=250,null=True, blank=True)
@@ -49,6 +49,7 @@ class Member(models.Model):
             return "/static/images/users/user-dummy-img.jpg"
 
 class Staff(models.Model):
+    gym = models.CharField(max_length=150)
     profile_pic = models.ImageField(upload_to="images/contact",blank=True,null=True)
     name = models.CharField(max_length=150,)
     address = models.CharField(max_length=25,null=True, blank=True)
@@ -68,12 +69,14 @@ class Staff(models.Model):
             return "/static/images/users/user-dummy-img.jpg"
 
 class Classes(models.Model):
+    gym = models.CharField(max_length=150)
     name = models.CharField(max_length=150)
     level_name = models.CharField(max_length=200)
     students = models.ManyToManyField(Member)
     update_at = models.DateTimeField(null=True)
 
 class Course(models.Model):
+    gym = models.CharField(max_length=150)
     course_name = models.CharField(max_length=150)
     course_type = models.CharField(max_length=50,choices=COURSE_TYPE)
     course_fee = models.IntegerField(null=True, blank=True)
@@ -84,18 +87,21 @@ class Course(models.Model):
     update_at = models.DateTimeField(null=True)
 
 class MemberAttendance(models.Model):
+    gym = models.CharField(max_length=150)
     member = models.ForeignKey(Member,on_delete=models.CASCADE, verbose_name="member")
     active_at = models.DateTimeField(auto_now_add=True)
     course = models.ForeignKey(Course,on_delete=models.CASCADE, verbose_name="course",null=True, blank=True)
     update_at = models.DateTimeField(null=True)    
     
 class StaffAttendance(models.Model):
+    gym = models.CharField(max_length=150)
     staff = models.ForeignKey(Staff,on_delete=models.CASCADE, verbose_name="staff")
     active_at = models.DateTimeField(auto_now_add=True)
     course = models.ForeignKey(Course,on_delete=models.CASCADE, verbose_name="course",null=True, blank=True)
     update_at = models.DateTimeField(null=True)
 
 class Invoice(models.Model):
+    gym = models.CharField(max_length=150)
     invoice_number = models.AutoField(auto_created = True,primary_key = True,serialize = True )
     students = models.ManyToManyField(Member)
     invoice_status = models.CharField(max_length=50,choices=INVOICE_STATUS)
@@ -110,6 +116,7 @@ class Invoice(models.Model):
     update_at = models.DateTimeField(null=True)
 
 class Payroll(models.Model):
+    gym = models.CharField(max_length=150)
     staff = models.ForeignKey(Staff,on_delete=models.CASCADE, verbose_name="staff")
     amount = models.FloatField(null=True, blank=True)
     bonus = models.FloatField(null=True, blank=True)

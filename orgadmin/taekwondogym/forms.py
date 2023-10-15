@@ -27,7 +27,7 @@ PAYMENT_TYPE = (
 class MemberAddForm(forms.ModelForm):
     class Meta:
         model = Member
-        fields = ['profile_pic','name','address','parent_name','email_id','phone','line_id','member_status']
+        fields = ['gym','profile_pic','name','address','parent_name','email_id','phone','line_id','member_status']
         
 class MemberUpdateForm(forms.ModelForm):
     class Meta:
@@ -38,7 +38,7 @@ class StaffAddForm(forms.ModelForm):
     
     class Meta:
         model = Staff
-        fields = ['profile_pic','name','address','email_id','phone','line_id','member_status','leave_at']
+        fields = ['gym','profile_pic','name','address','email_id','phone','line_id','member_status','leave_at']
         
 class StaffUpdateForm(forms.ModelForm):
     
@@ -49,7 +49,7 @@ class StaffUpdateForm(forms.ModelForm):
 class ClassAddForm(forms.ModelForm):
     class Meta:
         model = Classes
-        fields = ['name','level_name','students']
+        fields = ['gym','name','level_name','students']
 
 class ClassUpdateForm(forms.ModelForm):
     class Meta:
@@ -59,7 +59,7 @@ class ClassUpdateForm(forms.ModelForm):
 class CourseAddForm(forms.ModelForm):
     class Meta:
         model = Course
-        fields = ['course_name','course_type','course_fee','staff','open_course','close_course','classes']
+        fields = ['gym','course_name','course_type','course_fee','staff','open_course','close_course','classes']
         
 class CourseUpdateForm(forms.ModelForm):
     class Meta:
@@ -69,7 +69,7 @@ class CourseUpdateForm(forms.ModelForm):
 class InvoiceAddForm(forms.ModelForm):
     class Meta:
         model = Invoice
-        fields = ['invoice_number','students','invoice_status','courses','amount','discount','pay','remark','payment_type']
+        fields = ['gym','invoice_number','students','invoice_status','courses','amount','discount','pay','remark','payment_type']
         
 class InvoiceUpdateForm(forms.ModelForm):
     class Meta:
@@ -79,7 +79,7 @@ class InvoiceUpdateForm(forms.ModelForm):
 class PayrollAddForm(forms.ModelForm):
     class Meta:
         model = Payroll
-        fields = ['staff','amount','bonus','pay','hour_amount','pay_at']
+        fields = ['gym','staff','amount','bonus','pay','hour_amount','pay_at']
         
 class PayrollUpdateForm(forms.ModelForm):
     class Meta:

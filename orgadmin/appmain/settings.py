@@ -63,6 +63,8 @@ THIRDPARTY_APPS = [
     #'bootstrap5',
     'crispy_bootstrap4',
     'social_django',
+    'rest_framework',
+    'rest_framework_simplejwt',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS +LOCAL_APPS +THIRDPARTY_APPS
@@ -111,6 +113,14 @@ AUTHENTICATION_BACKENDS = [
     # `social auth` specific authentication methods, such as login by Google
     'social_core.backends.google.GoogleOAuth2',
 ]
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication'
+    ]
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 WSGI_APPLICATION = 'appmain.wsgi.application'
